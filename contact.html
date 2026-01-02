@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Transmissions | iA_k_venir</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+    <div class="scan-line"></div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <a href="index.html" style="text-decoration:none">
+                <h1 class="logo-signature">iA_k_venir</h1>
+            </a>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html#orbital" class="nav-link">[ UNITÉ VTC ]</a>
+            <a href="index.html#archives" class="nav-link">[ ARCHIVES TEMP ]</a>
+            <a href="conditions.html" class="nav-link">[ TARIFS & COND. ]</a>
+            <a href="contact.html" class="nav-link active">[ CONTACT ]</a>
+        </nav>
+    </header>
+
+    <main class="page-container page-contact">
+        <section class="contact-section">
+            <h2 class="section-title text-center neon-text-red">/// CANAL_DE_TRANSMISSION</h2>
+            <p class="subtitle text-center">Initialiser la communication avec le pilote.</p>
+
+            <div class="command-center-container">
+                <form id="contact-form" class="command-form">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="name">> IDENTITÉ</label>
+                            <input type="text" id="name" name="name" required class="terminal-input"
+                                placeholder="_NOM_PRÉNOM">
+                        </div>
+                        <div class="input-group">
+                            <label for="phone">> FREQUENCE (TEL)</label>
+                            <input type="tel" id="phone" name="phone" required class="terminal-input"
+                                placeholder="_06...">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">> EMAIL</label>
+                        <input type="email" id="email" name="email" required class="terminal-input"
+                            placeholder="_CONTACT@...">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="mission-type">> TYPE_MISSION</label>
+                        <select id="mission-type" name="mission-type" class="terminal-input">
+                            <option value="vtc">TRANSPORT VTC SEUL</option>
+                            <option value="photo">SHOOTING PHOTO</option>
+                            <option value="combo">PACK PRESTIGE (VTC + PHOTO)</option>
+                            <option value="other">AUTRE DEMANDE</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="message">> MESSAGE_DATA</label>
+                        <textarea id="message" name="message" rows="5" class="terminal-input"
+                            placeholder="_ENTRER_VOTRE_MESSAGE_ICI..."></textarea>
+                    </div>
+
+                    <div class="button-container text-center">
+                        <button type="submit" class="btn-action pulse-red">[ INITIALISER LA TRANSMISSION ]</button>
+                    </div>
+                </form>
+
+                <!-- Overlay Animation -->
+                <div id="transmission-overlay" class="transmission-overlay hidden">
+                    <div class="transmission-content">
+                        <div class="loader-signal"></div>
+                        <h3>ENVOI_DES_DONNÉES...</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content text-center">
+            <h3 class="footer-logo">iA_k_venir © 2024</h3>
+            <p>Propulsé par l'Intelligence Artificielle.</p>
+        </div>
+    </footer>
+
+    <script src="main.js" type="module"></script>
+</body>
+
+</html>

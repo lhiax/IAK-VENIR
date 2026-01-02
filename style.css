@@ -1,0 +1,201 @@
+/* Global Keyframes & Custom Styles */
+
+/* KITT Scanner Animation */
+@keyframes scanner {
+    0% {
+        left: -100px;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+.animate-scanner {
+    animation: scanner 2s infinite linear;
+    box-shadow: 0 0 15px #ff3333;
+}
+
+/* Neon Glows */
+.neon-text-blue {
+    text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+}
+
+.neon-text-green {
+    text-shadow: 0 0 10px #b8ff00, 0 0 20px #b8ff00;
+}
+
+.neon-text-red {
+    text-shadow: 0 0 10px #ff3333, 0 0 20px #ff3333;
+}
+
+.neon-text-holo-red {
+    color: #fff;
+    text-shadow:
+        0 0 5px #ff3333,
+        0 0 10px #ff3333,
+        0 0 20px #ff3333,
+        0 0 40px #ff0000;
+}
+
+/* Scanline Effect */
+.scan-line {
+    width: 100%;
+    height: 100px;
+    z-index: 10;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0.1;
+    background-size: 100% 4px;
+    animation: scanline 10s linear infinite;
+    position: fixed;
+    pointer-events: none;
+}
+
+@keyframes scanline {
+    0% {
+        transform: translateY(-100vh);
+    }
+
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+/* Noise Overlay */
+.noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00d4ff;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b8ff00;
+}
+
+/* Utility Class for Ticket Edges */
+.ticket-edge {
+    background-image: radial-gradient(circle, transparent 70%, #0a0a1a 70%);
+    background-size: 15px 15px;
+    background-position: bottom;
+    background-repeat: repeat-x;
+}
+
+/* Hero Dashboard Card */
+.hero-card {
+    background: linear-gradient(180deg, rgba(11, 16, 32, .78), rgba(11, 16, 32, .50));
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 28px;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, .55);
+    padding: 18px;
+    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.hero-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: radial-gradient(700px 220px at 40% 0%, rgba(0, 212, 255, .25), transparent 55%),
+        radial-gradient(500px 260px at 80% 20%, rgba(255, 51, 51, .16), transparent 55%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-card>* {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-card h3 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .84);
+}
+
+/* Dashboard Stats Grid */
+.hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.stat {
+    border: 1px solid rgba(255, 255, 255, .10);
+    background: rgba(255, 255, 255, .04);
+    border-radius: 16px;
+    padding: 12px;
+    transition: transform 0.2s;
+}
+
+.stat:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, .08);
+}
+
+.stat b {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 2px;
+}
+
+.stat span {
+    display: block;
+    font-size: 10px;
+    color: rgba(255, 255, 255, .68);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+}
+
+/* Animated Separator */
+.sep {
+    height: 2px;
+    background: rgba(255, 255, 255, .08);
+    border-radius: 999px;
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0 16px;
+}
+
+.sep::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 140px;
+    left: -160px;
+    background: linear-gradient(90deg, transparent, rgba(255, 51, 51, .70), transparent);
+    animation: scan 2.3s linear infinite;
+}
+
+@keyframes scan {
+    to {
+        left: calc(100% + 160px)
+    }
+}
