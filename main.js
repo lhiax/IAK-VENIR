@@ -324,10 +324,15 @@ function closeDealOverlay() {
 
     const overlay = document.getElementById('deal-overlay');
     const iframe = document.getElementById('deal-iframe');
+    const navControls = document.querySelector('#deal-overlay .flex.items-center.gap-2'); // Nav buttons container
 
     if (overlay) {
         overlay.classList.add('hidden');
         document.body.style.overflow = '';
+
+        // Restore Nav Controls for next use
+        if (navControls) navControls.classList.remove('hidden');
+
         if (iframe) {
             iframe.src = 'about:blank';
             iframe.onload = null; // Remove listener
@@ -422,6 +427,60 @@ function updateOverlayContent() {
 window.openDealOverlay = openDealOverlay;
 window.closeDealOverlay = closeDealOverlay;
 window.navigateDeal = navigateDeal;
+
+function openExternalOverlay(url, title) {
+    const overlay = document.getElementById('deal-overlay');
+    const iframe = document.getElementById('deal-iframe');
+    const scanner = document.getElementById('deal-scanner');
+    const titleEl = document.getElementById('deal-overlay-title');
+    const navControls = document.querySelector('#deal-overlay .flex.items-center.gap-2'); // Nav buttons container
+
+    if (overlay) {
+        overlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Hide Nav Controls for external links
+    if (navControls) navControls.classList.add('hidden');
+
+    // Set Title
+    if (titleEl) titleEl.textContent = `// ${title.toUpperCase()}`;
+
+    // Handle YouTube Conversion
+    // Handle YouTube Conversion
+    let finalUrl = url;
+    if (url.includes('youtu.be/')) {
+        const videoId = url.split('youtu.be/')[1].split('?')[0];
+        finalUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    } else if (url.includes('youtube.com/watch?v=')) {
+        const videoId = url.split('v=')[1].split('&')[0];
+        finalUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    }
+    // Handle Canva Embeds (Force Embed Mode to avoid X-Frame-Options)
+    else if (url.includes('canva.com') && url.includes('/view')) {
+        // Remove query params and ensure ?embed
+        const baseUrl = url.split('?')[0];
+        finalUrl = `${baseUrl}?embed`;
+    }
+
+    // Load Iframe
+    if (iframe) {
+        iframe.style.display = 'block';
+        iframe.style.opacity = '0';
+        iframe.src = finalUrl;
+
+        if (scanner) scanner.style.display = 'flex';
+
+        iframe.onload = () => {
+            setTimeout(() => {
+                if (scanner) scanner.style.display = 'none';
+                iframe.style.opacity = '1';
+            }, 800);
+        };
+    }
+}
+
+window.openExternalOverlay = openExternalOverlay;
 
 /* =========================================
    UI RENDER
